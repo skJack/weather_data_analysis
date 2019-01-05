@@ -3,6 +3,7 @@ from lxml import etree
 import pandas as pd
 from selenium import webdriver
 import time
+import os
 class spider():
     def __init__(self):
         self.base_url = 'https://www.aqistudy.cn/historydata/'
@@ -64,23 +65,26 @@ class spider():
                 pd_data.to_csv('result/'+city+'.csv',index_label='index')
             print('获取{}天气数据完成'.format(city))
 
-def mix_csv(city_list):
-    '''
-    :return: mix each cities csv into one file
-    '''
+def mix_csv():
+    p = 'result/'
+    files = os.listdir(p)
     print("合并csv中。。。")
     df = pd.DataFrame()
-    for city in city_list:
-        path = 'result/' + city + '.csv'
-        f = open(path, 'r', encoding='utf-8')
+    for path in files:
+        try:
+            f = open('result/'+path, 'r', encoding='utf-8')
+        except:
+            continue
         df2 = pd.read_csv(f, index_col='index')
         df = df.append(df2)
-    df2 = df.sort_values(by=["city"], ascending=[True]).reset_index(drop=True)
+    df2 = df.sort_values(by=["city","time_point"], ascending=[True,True]).reset_index(drop=True)
     df2.to_csv('weather.csv', index_label='index')
     print('合并文件完成')
 
 if __name__ == '__main__':
+    if not os.path.exists('result'):
+        os.mkdir('result')
     s = spider()
-    s.get_month_data()
-    mix_csv(s.city_list)
+    s.get_month_data(['北京','上海','广州','呼和浩特','厦门','武汉','深圳','杭州','成都','南京','西安','天津','合肥','乌鲁木齐','海口','南宁'])
+    mix_csv()
 
