@@ -1,0 +1,76 @@
+{% block map %}
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8"><link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            /* css 代码  */
+        </style>
+        <script src="https://img.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+        <script src="https://img.hcharts.cn/highmaps/highmaps.js"></script>
+        <script src="https://img.hcharts.cn/highcharts/modules/drilldown.js"></script>
+        <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+    </head>
+    <body>
+        <div id="container" style="height:600px;"></div>
+        <script>
+            Highcharts.setOptions({
+    lang: {
+        drillUpText: '< 返回 “{series.name}”'
+    }
+});
+var map = null,
+    geochina = 'https://data.jianshukeji.com/jsonp?filename=geochina/';
+
+
+
+$.getJSON(geochina + 'china.json&callback=?', function(mapdata) {
+    var data = [];
+    // 随机数据
+    Highcharts.each(mapdata.features, function(md, index) {
+        var tmp = {
+            name: md.properties.name,
+            value: Math.floor((Math.random() * 100) + 50) 
+        };
+        if(md.properties.drilldown) {
+            tmp.drilldown = md.properties.drilldown;
+        }
+        data.push(tmp);
+    });
+
+    map = new Highcharts.Map('container', {
+        
+        title: {
+            text: '中国地图'
+        },
+        subtitle: {
+            useHTML: true,
+            text: '本月全国空气质量情况'
+        },
+        mapNavigation: {
+            enabled: true,
+            buttonOptions: {
+                verticalAlign: 'bottom'
+            }
+        },
+      
+        series: [{
+            data: data,
+            mapData: mapdata,
+            joinBy: 'name',
+            name: 'AQI的值：',
+            states: {
+                hover: {
+                    color: '#a4edba'
+                }
+            }
+        }]
+    });
+	
+});
+
+        </script>
+    </body>
+</html>
+{% endblock %}

@@ -1,0 +1,145 @@
+{% block charts %}
+{% load static %}
+<link rel="stylesheet" href="{% static '/MySemantic/semantic/dist/semantic.css'%}">
+		<script src="{% static '/MySemantic/node_modules/semantic-ui/examples/assets/library/jquery.min.js' %}"></script>
+		<script src="{% static '/MySemantic/semantic/dist/semantic.js' %}"></script>
+		<script src="{% static 'js/exporting.js' %}"></script>
+		<script src="{% static 'js/highcharts.js'%}"></script>
+		<script src="{% static 'js/highcharts-more.js'%}"></script>
+<div class="ui equal width grid" style="width:60%;margin: 5px 5px 5px 5px">
+			<div class="row">
+			<div class="column">
+					<div class="ui container segment">
+
+				 <div class="ui compact menu">
+                <div class="ui simple dropdown item">
+                  Area
+                  <i class="dropdown icon"></i>
+                  <div class="menu">
+                    <div class="item" id="CY">北京—石家庄-呼和浩特</div>
+                    <div class="item" id="HD">上海</div>
+                    <div class="item" id="TZ">贵阳</div>
+                  </div>
+                </div>
+              </div>
+					<div class="ui container" id="chart1"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+	<script>
+	 $('#CY').click(function(){
+
+
+        // 图表配置
+        var options = {
+            credits:{
+              enabled:false
+            },
+            chart: {
+                type: 'bar'                          //指定图表的类型，默认是折线图（line）
+            },
+            title: {
+                text: '北京市空气质量-AQI'                 // 标题
+            },
+            xAxis: {
+                categories: ['2019', '2018', '2017']   // x 轴分类
+            },
+            yAxis: {
+                title: {
+                    text: '空气质量 '                // y 轴标题
+                }
+            },
+            series: [{                              // 数据列
+                name: '北京',                        // 数据列名
+                data: {{result_list.aqi_BJ}}  // 数据
+            }, {
+                name: '石家庄',
+                data: {{result_list.aqi_SJZ}}
+            },
+                {
+                    name: '呼和浩特',
+                    data: {{result_list.aqi_HHHT}}
+                }]
+        };
+        // 图表初始化函数
+        var chart = Highcharts.chart('chart1', options);
+     });
+		</script>
+		<script>
+	 $('#HD').click(function(){
+        // 图表配置
+        var options = {
+            credits:{
+              enabled:false
+            },
+            chart: {
+                type: 'line'                          //指定图表的类型，默认是折线图（line）
+            },
+            title: {
+                text: '北京市空气质量'                 // 标题
+            },
+
+            yAxis: {
+                title: {
+                    text: '空气质量 '                // y 轴标题
+                }
+            },
+            series: [{                              // 数据列
+                name: '北京',                        // 数据列名
+                data: {{result_list.pm25_BJ}}                   // 数据
+            }, {
+                name: '石家庄',
+                data: {{ result_list.pm25_SJZ}}
+            },{
+                name: '呼和浩特',
+                data: {{ result_list.pm25_HHHT}}
+            }
+            ]
+        };
+        // 图表初始化函数
+        var chart = Highcharts.chart('chart1', options);
+     });
+		</script>
+
+		<script>
+	 $('#TZ').click(function(){
+
+
+        // 图表配置
+        var options = {
+            credits:{
+              enabled:false
+            },
+            chart: {
+                type: 'line'                          //指定图表的类型，默认是折线图（line）
+            },
+            title: {
+                text: '我的第三个图表'                 // 标题
+            },
+            xAxis: {
+                categories: ['2017', '2018', '2019']   // x 轴分类
+            },
+            yAxis: {
+                title: {
+                    text: 'pm2.5'                // y 轴标题
+                }
+            },
+            series: [{                              // 数据列
+                name: '北京',                        // 数据列名
+                data: {{result_list.aqi_BJ}}  // 数据             // 数据
+            }, {
+                name: '石家庄',
+                data: {{ result_list.pm25_SJZ}}
+            },{
+                name: '呼和浩特',
+                data: {{ result_list.pm25_HHHT}}
+            }
+            ]
+        };
+        // 图表初始化函数
+        var chart = Highcharts.chart('chart1', options);
+     });
+		</script>
+{% endblock %}

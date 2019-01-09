@@ -1,0 +1,57 @@
+html,body{
+    width: 100%;
+    height: 100%;
+}
+/*.box{
+    width: 7680px;
+    height: 3240px;
+!*    display: inline;*!
+}*/
+/*.left .right .comment{
+    width: 1920px;
+    height: 3240px;
+!*    display: inline;*!
+
+}*/
+/*.echbox{
+    width: 1920px;
+    height: 1080px;
+}*/
+.Contradiction{
+    display:inline;
+    background-color: #001321;
+}
+/*.Cencomment{
+    width: 3840px;
+    height: 3024px;
+!*    display: inline;*!
+    background-color: #001321;
+}*/
+.contitle{
+    width: 100%;
+    height: 100px;
+    background: url("../img/标题_6字.png")no-repeat;
+    background-size: 100% 100%;
+    margin: 20px 0 0 40px;
+}
+.titleimg{
+    width: 100%;
+    background: url("../img/标题_7字.png")no-repeat;
+}
+.contitle p{
+    width: 100%;
+    display: table-cell;
+    padding-left: 70px;
+    font-size:50px;
+    font-family: SimHei;
+    color: #0cfccc;
+    text-align: center;
+    line-height: 90px;
+}
+#concie{
+    width:100%;
+    height: 500px;
+    position: absolute;
+    top: 40px;
+    right: -410px;
+}

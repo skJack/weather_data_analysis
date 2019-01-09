@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: PyHighcharts
+Version: 2.0
+Summary: A python wrapper for the highcharts charting library
+Home-page: https://github.com/fidyeates/PyHighcharts/tree/dev
+Author: fin.yeates
+Author-email: findlay.yeates@deitek.co.uk
+License: PSF
+Download-URL: https://github.com/fidyeates/PyHighcharts/tarball/2.0
+Description: UNKNOWN
+Keywords: PyHighcharts,highcharts
+Platform: UNKNOWN

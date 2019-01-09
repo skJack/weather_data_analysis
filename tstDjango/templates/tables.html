@@ -1,0 +1,800 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bootstrap Material Admin </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="../static/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="../static/vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="../static/css/fontastic.css">
+    <!-- Google fonts - Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="../static/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="../static/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="../static/img/favicon.ico">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <link rel="stylesheet" href="{% static '/MySemantic/semantic/dist/semantic.css' %}">
+    <script src="{% static '/MySemantic/node_modules/semantic-ui/examples/assets/library/jquery.min.js' %}"></script>
+    <script src="{% static '/MySemantic/semantic/dist/semantic.js' %}"></script>
+    <script src="{% static 'js/exporting.js' %}"></script>
+
+    <!-- 引入 echarts.js -->
+    <script src="../static/js/echarts.js"></script>
+    <!--map-->
+    <meta charset="utf-8">
+    <link rel="icon" href="https://static.jianshukeji.com/highcharts/images/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .box {
+            width: 1520px;
+            height: 720px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-content: space-between;
+        }
+
+        .ces {
+            width: 500px;
+            height: 360px;
+            background: #ffffff;
+        }
+
+        #kpces, #condtion, #amibox {
+            width: 380px;
+            height: 360px;
+            background: #ffffff;
+        }
+
+        .cent {
+            width: 600px;
+            height: 720px;
+            background: #ffffff;
+            position: relative;
+        }
+
+        .map {
+            width: 760px;
+            height: 670px;
+        }
+
+        .left {
+            float: right;
+        }
+
+        #mapcenter {
+            width: 760px;
+            height: 720px;
+
+        }
+
+        .contitle {
+            width: 100%;
+        {#background: url("../img/标题_6字.png") no-repeat;#} background-size: 50% 100%;
+            margin: 5px 0 0 20px;
+        }
+
+        .titleimg {
+            width: 100%;
+        {#background: url("../img/标题_7字.png") no-repeat;#} background-size: 50% 100%;
+            margin: 5px 0 0 20px;
+        }
+
+        .contitle p {
+            width: 100%;
+            display: table-cell;
+            padding-left: 40px;
+            font-size: 18px;
+            font-family: SimHei;
+            color: #000000;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        #concie {
+            width: 95%;
+            height: 300px;
+            top: 15%;
+            right: 10px;
+        }
+
+        #keybox {
+            position: relative;
+        }
+
+        #wrap {
+            width: 304px;
+            height: 360px;
+        }
+
+        /*展示一*/
+        #actwn {
+            width: 500px;
+            height: 360px;
+            position: relative;
+        }
+    </style>
+    <script src="https://img.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/modules/wordcloud.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/modules/oldie.js"></script>
+    {#    <script src="vendor/jquery/jquery.min.js"></script>#}
+    {#    <script src="vendor/popper.js/umd/popper.min.js"></script>#}
+    {#    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>#}
+    {#    <script src="vendor/jquery.cookie/jquery.cookie.js"></script>#}
+    {#    <script src="vendor/chart.js/Chart.min.js"></script>#}
+    {#    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>#}
+    {#    <script src="js/charts-home.js"></script>#}
+</head>
+<body>
+<div class="page">
+    <!-- Main Navbar-->
+    <header class="header">
+        <nav class="navbar">
+            <!-- Search Box-->
+            <div class="search-box">
+                <button class="dismiss"><i class="icon-close"></i></button>
+                <form id="searchForm" action="#" role="search">
+                    <input type="search" placeholder="What are you looking for..." class="form-control">
+                </form>
+            </div>
+            <div class="container-fluid">
+                <div class="navbar-holder d-flex align-items-center justify-content-between">
+                    <!-- Navbar Header-->
+                    <div class="navbar-header">
+                        <!-- Navbar Brand --><a href="index.html" class="navbar-brand d-none d-sm-inline-block">
+                        <div class="brand-text d-none d-lg-inline-block">
+                            <span>Bootstrap </span><strong>Dashboard</strong></div>
+                        <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div>
+                    </a>
+                        <!-- Toggle Button--><a id="toggle-btn" href="#"
+                                                class="menu-btn active"><span></span><span></span><span></span></a>
+                    </div>
+                    <!-- Navbar Menu -->
+                    <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                        <!-- Search-->
+                        <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i
+                                class="icon-search"></i></a></li>
+                        <!-- Notifications-->
+                        <li class="nav-item dropdown"><a id="notifications" rel="nofollow" data-target="#" href="#"
+                                                         data-toggle="dropdown" aria-haspopup="true"
+                                                         aria-expanded="false" class="nav-link"><i
+                                class="fa fa-bell-o"></i><span class="badge bg-red badge-corner">12</span></a>
+                            <ul aria-labelledby="notifications" class="dropdown-menu">
+                                <li><a rel="nofollow" href="#" class="dropdown-item">
+                                    <div class="notification">
+                                        <div class="notification-content"><i class="fa fa-envelope bg-green"></i>You
+                                            have 6 new messages
+                                        </div>
+                                        <div class="notification-time">
+                                            <small>4 minutes ago</small>
+                                        </div>
+                                    </div>
+                                </a></li>
+                                <li><a rel="nofollow" href="#" class="dropdown-item">
+                                    <div class="notification">
+                                        <div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have
+                                            2 followers
+                                        </div>
+                                        <div class="notification-time">
+                                            <small>4 minutes ago</small>
+                                        </div>
+                                    </div>
+                                </a></li>
+                                <li><a rel="nofollow" href="#" class="dropdown-item">
+                                    <div class="notification">
+                                        <div class="notification-content"><i class="fa fa-upload bg-orange"></i>Server
+                                            Rebooted
+                                        </div>
+                                        <div class="notification-time">
+                                            <small>4 minutes ago</small>
+                                        </div>
+                                    </div>
+                                </a></li>
+                                <li><a rel="nofollow" href="#" class="dropdown-item">
+                                    <div class="notification">
+                                        <div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have
+                                            2 followers
+                                        </div>
+                                        <div class="notification-time">
+                                            <small>10 minutes ago</small>
+                                        </div>
+                                    </div>
+                                </a></li>
+                                <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center">
+                                    <strong>view all notifications </strong></a></li>
+                            </ul>
+                        </li>
+                        <!-- Messages                        -->
+                        <li class="nav-item dropdown"><a id="messages" rel="nofollow" data-target="#" href="#"
+                                                         data-toggle="dropdown" aria-haspopup="true"
+                                                         aria-expanded="false" class="nav-link"><i
+                                class="fa fa-envelope-o"></i><span class="badge bg-orange badge-corner">10</span></a>
+                            <ul aria-labelledby="notifications" class="dropdown-menu">
+                                <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
+                                    <div class="msg-profile"><img src="img/avatar-1.jpg" alt="..."
+                                                                  class="img-fluid rounded-circle"></div>
+                                    <div class="msg-body">
+                                        <h3 class="h5">Jason Doe</h3><span>Sent You Message</span>
+                                    </div>
+                                </a></li>
+                                <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
+                                    <div class="msg-profile"><img src="img/avatar-2.jpg" alt="..."
+                                                                  class="img-fluid rounded-circle"></div>
+                                    <div class="msg-body">
+                                        <h3 class="h5">Frank Williams</h3><span>Sent You Message</span>
+                                    </div>
+                                </a></li>
+                                <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
+                                    <div class="msg-profile"><img src="img/avatar-3.jpg" alt="..."
+                                                                  class="img-fluid rounded-circle"></div>
+                                    <div class="msg-body">
+                                        <h3 class="h5">Ashley Wood</h3><span>Sent You Message</span>
+                                    </div>
+                                </a></li>
+                                <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center">
+                                    <strong>Read all messages </strong></a></li>
+                            </ul>
+                        </li>
+                        <!-- Languages dropdown    -->
+                        <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#"
+                                                         data-toggle="dropdown" aria-haspopup="true"
+                                                         aria-expanded="false"
+                                                         class="nav-link language dropdown-toggle"><img
+                                src="img/flags/16/GB.png" alt="English"><span
+                                class="d-none d-sm-inline-block">English</span></a>
+                            <ul aria-labelledby="languages" class="dropdown-menu">
+                                <li><a rel="nofollow" href="#" class="dropdown-item"> <img
+                                        src="../static/img/flags/16/DE.png" alt="English" class="mr-2">German</a></li>
+                                <li><a rel="nofollow" href="#" class="dropdown-item"> <img
+                                        src="../static/img/flags/16/FR.png" alt="English" class="mr-2">French </a></li>
+                            </ul>
+                        </li>
+                        <!-- Logout    -->
+                        <li class="nav-item"><a href="login.html" class="nav-link logout"> <span
+                                class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="page-content d-flex align-items-stretch">
+        <!-- Side Navbar -->
+        <nav class="side-navbar">
+            <!-- Sidebar Header-->
+            <div class="sidebar-header d-flex align-items-center">
+                <div class="avatar"><img src="../static/img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle">
+                </div>
+                <div class="title">
+                    <h1 class="h4">Mark Stephen</h1>
+                    <p>Web Designer</p>
+                </div>
+            </div>
+            <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+            <ul class="list-unstyled">
+                <li class="active"><a href="index.html"> <i class="icon-home"></i>Home </a></li>
+                <li><a href="/tables/"> <i class="icon-grid"></i>Tables </a></li>
+                <li><a href="/charts/"> <i class="fa fa-bar-chart"></i>Charts </a></li>
+                <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
+                <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i
+                        class="icon-interface-windows"></i>Example dropdown </a>
+                    <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                        <li><a href="#">Page</a></li>
+                        <li><a href="#">Page</a></li>
+                        <li><a href="#">Page</a></li>
+                    </ul>
+                </li>
+                <li><a href="login.html"> <i class="icon-interface-windows"></i>Login page </a></li>
+            </ul>
+            <span class="heading">Extras</span>
+            <ul class="list-unstyled">
+                <li><a href="#"> <i class="icon-flask"></i>Demo </a></li>
+                <li><a href="#"> <i class="icon-screen"></i>Demo </a></li>
+                <li><a href="#"> <i class="icon-mail"></i>Demo </a></li>
+                <li><a href="#"> <i class="icon-picture"></i>Demo </a></li>
+            </ul>
+        </nav>
+        <div class="content-inner">
+            <!-- Page Header-->
+            <header class="page-header">
+                <div class="container-fluid">
+                    <h2 class="no-margin-bottom">Dashboard</h2>
+                </div>
+            </header>
+            <!-- Dashboard Counts Section-->
+            <div class="box">
+                <div class="right">
+
+                    <div class="ces" id="condtion" style="position: relative">
+
+                        <div class="contitle">
+                            <p>贵阳API</p>
+                        </div>
+                        <div id="contra" style="width: 100%;height: 880px;"></div>
+                        <script type="text/javascript">
+                            var contra = document.getElementById('contra');
+
+                            var resizeWorldMapContainer = function () {//用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
+                                var conwrap = document.getElementById('condtion');
+                                contra.style.width = conwrap.clientWidth + 'px';
+                                contra.style.height = conwrap.clientHeight + 'px';
+                            };
+
+                            resizeWorldMapContainer();//设置容器高宽
+                            var ContraChart = echarts.init(contra);
+                            var option = {
+                                tooltip: {
+                                    trigger: 'axis',
+                                    axisPointer: {
+                                        lineStyle: {
+                                            color: '#57617B'
+                                        }
+                                    }
+                                },
+                                grid: {
+                                    left: '1%',
+                                    right: '10%',
+                                    bottom: '15%',
+                                    containLabel: true
+                                },
+                                xAxis: [{
+                                    type: 'category',
+                                    name: '月份',
+                                    boundaryGap: true,
+                                    nameTextStyle: {
+                                        fontSize: 12,
+                                        color: '#000000',
+                                        /* padding:[0,12,10,5]*/
+                                    },
+                                    axisLine: {
+                                        lineStyle: {
+                                            color: '#000000'
+                                        }
+                                    },
+                                    axisLabel: {
+                                        margin: 5,
+                                        interval: 0,
+                                        textStyle: {
+                                            fontSize: 12,
+                                            color: '#000000'
+                                        }
+                                    },
+                                    data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+                                }],
+                                yAxis: [{
+                                    type: 'value',
+                                    min: 0,
+                                    max: 50,
+                                    name: '',
+                                    // nameGap:25,
+                                    nameTextStyle: {
+                                        fontSize: 12,
+                                        color: '#000000',
+                                        /* padding:[0,12,10,40]*/
+                                    },
+                                    axisTick: {
+                                        show: true
+                                    },
+                                    axisLine: {
+                                        lineStyle: {
+                                            color: '#000000'
+                                        },
+                                        textStyle: {
+                                            color: '#000',
+
+                                        }
+                                    },
+                                    axisLabel: {
+                                        margin: 20,
+                                        textStyle: {
+                                            fontSize: 12,
+                                            color: '#000000',
+                                        }
+                                    },
+                                    splitLine: {
+                                        lineStyle: {
+                                            color: '#000000'
+                                        }
+                                    }
+                                }],
+                                series: [{
+                                    type: 'line',
+                                    smooth: true,
+                                    // symbolSize:10,
+                                    lineStyle: {
+                                        normal: {
+                                            width: 2
+                                        }
+                                    },
+                                    areaStyle: {
+                                        normal: {
+                                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                                offset: 0,
+                                                color: 'rgba(9, 179, 145, 0.4)'
+                                            }, {
+                                                offset: 0.9,
+                                                color: 'rgba(9, 179, 145, 0.03)'
+                                            }], false),
+                                            shadowColor: 'rgba(0, 0, 0, 0.1)',
+                                            shadowBlur: 10
+                                        }
+                                    },
+                                    itemStyle: {
+                                        normal: {
+                                            color: 'rgb(9, 179, 145)'
+                                        }
+                                    },
+                                    data: [8, 27, 33, 10.5, 21, 17, 19.5, 25, 19, 8.5, 20, 16]
+                                }]
+                            };
+                            ContraChart.setOption(option);
+                            window.addEventListener('resize', function () {
+                                resizeWorldMapContainer();//重置容器高宽
+                                ContraChart.resize();
+                            })
+                        </script>
+
+                    </div>
+                    <div class="ces" id="kpces">
+                        <div class="contitle">
+                            <p>主要城市2019年1月PM2.5对比</p>
+                        </div>
+                        <div id="keyper" style="width:100%;height:880px;"></div>
+                        <script type="text/javascript">
+                            var kpechartsWap = document.getElementById('keyper');
+                            var resizeWorldMapContainer = function () {//用于使chart自适应高度和宽度,通过窗体高宽计算容器高宽
+                                var kpces = document.getElementById('kpces');
+                                kpechartsWap.style.width = kpces.clientWidth + 'px';
+                                kpechartsWap.style.height = kpces.clientHeight + 'px';
+                            };
+                            resizeWorldMapContainer();//设置容器高宽
+
+                            var kpChart = echarts.init(kpechartsWap);
+                            var colorList = {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                /* color:'#09b391',*/
+                                colorStops: [{
+                                    offset: 0,
+                                    color: '#1832de' // 0% 处的颜色
+                                }, {
+                                    offset: 1,
+                                    color: '#437eb3' // 100% 处的颜色
+                                }],
+                                globalCoord: false // 缺省为 false
+                            };
+                            var option = {
+                                tooltip: {
+                                    trigger: 'axis',
+                                    axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                                        type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                                    }
+                                },
+                                grid: {
+                                    left: '1%',
+                                    right: '9%',
+                                    bottom: '8%',
+                                    containLabel: true
+                                },
+                                xAxis: {
+                                    type: 'category',
+                                    name: '城市',
+                                    nameTextStyle: {
+                                        fontSize: 12,
+                                        color: '#000000',
+                                        /* padding:[0,0,4,0]*/
+                                    },
+                                    data: ['北京', '上海', '广州', '呼和浩特', '贵阳', '武汉', '深圳', '杭州', '成都', '南京'],
+                                    axisLine: {
+                                        lineStyle: {
+                                            color: '#000000'
+                                        }
+                                    },
+                                    axisLabel: {
+                                        interval: 0,
+                                        formatter: function (value) {
+                                            var ret = ""; //拼接加\n返回的类目项
+                                            var maxLength = 1; //每项显示文字个数
+                                            var valLength = value.length; //X轴类目项的文字个数
+                                            var rowN = Math.ceil(valLength / maxLength); //类目项需要换行的行数
+                                            if (rowN > 1) //如果类目项的文字大于3,
+                                            {
+                                                for (var i = 0; i < rowN; i++) {
+                                                    var temp = ""; //每次截取的字符串
+                                                    var start = i * maxLength; //开始截取的位置
+                                                    var end = start + maxLength; //结束截取的位置
+                                                    //这里也可以加一个是否是最后一行的判断，但是不加也没有影响，那就不加吧
+                                                    temp = value.substring(start, end) + "\n";
+                                                    ret += temp; //凭借最终的字符串
+                                                }
+                                                return ret;
+                                            } else {
+                                                return value;
+                                            }
+                                        },
+                                        margin: 5,
+                                        textStyle: {
+                                            fontSize: 12,
+                                            color: '#000000',
+                                            fontFamily: 'Microsoft YaHei'
+                                        }
+                                    },
+                                },
+
+                                yAxis: {
+                                    type: 'value',
+                                    min: 0,
+                                    max: 120,
+                                    name: 'PM2.5',
+                                    nameTextStyle: {
+                                        fontSize: 12,
+                                        color: '#000000',
+                                        /*  padding:[0,10,10,30]*/
+                                    },
+                                    axisLine: {
+                                        show: true,
+                                        lineStyle: {
+                                            color: '#000000'
+                                        }
+
+                                    },
+                                    splitLine: {
+                                        show: true,
+                                        lineStyle: {
+                                            color: '#000000'
+                                        }
+                                    },
+                                    axisLabel: {
+                                        margin: 10,
+                                        textStyle: {
+                                            fontSize: 12,
+                                            color: '#000000',
+                                            fontFamily: 'Microsoft YaHei'
+                                        }
+                                    }
+                                },
+
+                                series: [{
+                                    name: '',
+                                    type: 'bar',
+                                    barWidth: '40%',
+                                    itemStyle: {
+                                        normal: {
+                                            color: function (params) {
+
+                                                return colorList;
+                                            },
+
+                                        },
+                                        emphasis: {
+                                            color: '#ec2e31',
+                                        }
+
+                                        //barBorderRadius: 15,
+                                    },
+
+                                    data: {{ result_list }}
+                                }]
+                            };
+                            var app = {
+                                currentIndex: -1,
+                            };
+                            setInterval(function () {
+                                var dataLen = option.series[0].data.length;
+
+                                // 取消之前高亮的图形
+                                kpChart.dispatchAction({
+                                    type: 'downplay',
+                                    seriesIndex: 0,
+                                    dataIndex: app.currentIndex
+                                });
+                                app.currentIndex = (app.currentIndex + 1) % dataLen;
+                                //console.log(app.currentIndex);
+                                // 高亮当前图形
+                                kpChart.dispatchAction({
+                                    type: 'highlight',
+                                    seriesIndex: 0,
+                                    dataIndex: app.currentIndex,
+                                });
+                                // 显示 tooltip
+                                kpChart.dispatchAction({
+                                    type: 'showTip',
+                                    seriesIndex: 0,
+                                    dataIndex: app.currentIndex
+                                });
+
+
+                            }, 1000);
+                            kpChart.setOption(option);
+                            window.addEventListener('resize', function () {
+                                resizeWorldMapContainer();//重置容器高宽
+                                kpChart.resize();
+                            })
+                        </script>
+                    </div>
+                </div>
+                <div class="center">
+                    <div class="cent">
+                        <div class="contitle titleimg" style="margin-left: 20%">
+                            <p></p>
+                        </div>
+                        <div id="container"></div>
+                        <script>
+                            var text = '上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 上海 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 广州 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 贵阳 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 呼和浩特 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 厦门 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 武汉 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 深圳 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 杭州 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 成都 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 南京 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 西安 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 天津 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 合肥 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 乌鲁木齐 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 海口 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 南宁 ';
+                            var data = text.split(/[,\. ]+/g)
+                                .reduce(function (arr, word) {
+                                    var obj = arr.find(function (obj) {
+                                        return obj.name === word;
+                                    });
+                                    if (obj) {
+                                        obj.weight += 1;
+                                    } else {
+                                        obj = {
+                                            name: word,
+                                            weight: 1
+                                        };
+                                        arr.push(obj);
+                                    }
+                                    return arr;
+                                }, []);
+                            Highcharts.chart('container', {
+                                credits:{
+              enabled:false
+            },
+                                series: [{
+                                    type: 'wordcloud',
+                                    data: data
+                                }],
+                                title: {
+                                    text: '词云图'
+                                }
+                            });
+
+                        </script>
+                    </div>
+
+                </div>
+                <div class="left">
+                    <div class="ces" id="actwn">
+                        <div class="contitle titleimg">
+                            <p>贵阳市2019年各项数据展示</p>
+                        </div>
+                        <div id="concie"></div>
+                        <script type="text/javascript">
+                            var CieChart = echarts.init(document.getElementById('concie'));
+                            var option = {
+                                tooltip: {
+                                    trigger: 'item',
+                                    formatter: '{b}'
+                                },
+                                legend: {
+                                    x: 'center',
+                                    y: 'top'
+                                },
+                                calculable: true,
+                                series: [{
+                                    color: ['#3AA7F9', '#F56C7C', '#FD9A36', '#EBE028', '#31CE65', '#20DACD', '#D671F5', '#F430E8', '#8A31FB', '#d5566e', '#be6878', '#a77c84', '#8f908f'],
+                                    type: 'pie',
+                                    radius: [10, 50],
+                                    center: ['50%', '45%'],
+                                    roseType: 'radius',
+                                    data: [{
+                                        value: 76.3,
+                                        name: 'PM 2.5\n'
+                                    },
+                                        {
+                                            value: 72.1,
+                                            name: 'PM 10\n'
+                                        },
+                                        {
+                                            value: 77.9,
+                                            name: 'NO2\n'
+                                        },
+                                        {
+                                            value: 70.3,
+                                            name: 'O3\n'
+                                        },
+                                        {
+                                            value: 70.5,
+                                            name: 'SO2\n' +
+                                            '二氧化硫'
+                                        },
+                                    ]
+                                }]
+                            };
+                            CieChart.setOption(option)
+                        </script>
+                    </div>
+                    <div class="ces" id="keybox">
+                        <div class="contitle titleimg">
+                            <p></p>
+                        </div>
+                         <div id="Mypie" style="min-width:400px;height:300px"></div>
+        <script>
+            Highcharts.chart('Mypie', {
+		chart: {
+				plotBackgroundColor: null,
+				plotBorderWidth: null,
+				plotShadow: false,
+				type: 'pie'
+		},
+		title: {
+				text: '贵阳市污染气体浓度比例'
+		},
+		tooltip: {
+				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+		},
+		plotOptions: {
+				pie: {
+						allowPointSelect: true,
+						cursor: 'pointer',
+						dataLabels: {
+								enabled: true,
+								format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+								style: {
+										color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+								}
+						}
+				}
+		},
+		series: [{
+				name: 'Brands',
+				colorByPoint: true,
+				data: [{
+						name: 'PM2.5',
+						y: 61.41,
+						sliced: true,
+						selected: true
+				}, {
+						name: 'No',
+						y: 11.84
+				}, {
+						name: 'NO2',
+						y: 10.85
+				}, {
+						name: 'CO',
+						y: 4.67
+				}, {
+						name: 'C02',
+						y: 4.18
+				}, {
+						name: 'SO2',
+						y: 1.64
+				}, {
+						name: 'SO3',
+						y: 1.6
+				}, {
+						name: 'O2',
+						y: 1.2
+				}, {
+						name: 'Other',
+						y: 2.61
+				}]
+		}]
+});
+        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{#    <script src="js/front.js"></script>#}
+</body>
+</html>
